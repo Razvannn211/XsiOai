@@ -118,8 +118,32 @@ body {
   color: red;
   min-height: 30px; /* păstrează spațiu chiar dacă mesajul e gol */
 }
-@media (max-width: 400px) {
+/* Media queries pentru ecrane mici */
+@media (max-width: 600px) {
   .flexbox {
-    display: block;
+    display: block; /* face elementele să fie unul sub altul */
+    gap: 20px; /* distanță între intro și tabel */
+    align-items: center; /* centrează pe orizontală */
+  }
+
+  .intro {
+    width: 80%; /* lățime mai mare pe mobil */
+    height: auto; /* înălțime automată */
+  }
+
+  .tabel {
+    width: 100%;
+    justify-content: center; /* tabelul centrat */
+    flex-grow: 0;
+  }
+
+  .ttt {
+    width: 250px; /* mai mică pe mobil */
+    height: 250px;
+  }
+
+  #mesaj {
+    font-size: 20px; /* text mai mic pe mobil */
+    margin-top: 10px;
   }
 }
