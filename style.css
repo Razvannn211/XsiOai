@@ -109,7 +109,9 @@ body {
   align-items: center; /* centrează pe orizontală */
   gap: 10px; /* distanță între tabel și mesaj */
 }
-
+#end-btn {
+  display: none;
+}
 #mesaj {
   display: block;
   text-align: center;
@@ -120,6 +122,42 @@ body {
 }
 /* Media queries pentru ecrane mici */
 @media (max-width: 600px) {
+  .hidden {
+    display: none;
+  }
+  #end-btn {
+    display: none; /* ascuns implicit */
+    margin: 20px auto; /* centru orizontal */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: hsl(0, 0%, 9%);
+    color: hsl(0, 0%, 86%);
+    border: none;
+    cursor: pointer;
+
+    /* Flex pentru elementele din interior */
+    display: flex; /* transformă end-btn în container flex */
+    justify-content: center; /* centrează pe orizontală */
+    align-items: center; /* centrează pe verticală */
+    gap: 10px; /* dacă ai mai multe butoane */
+  }
+
+  #end-btn.visible {
+    display: flex; /* apare când jocul s-a terminat */
+  }
+
+  #menu-btn,
+  #play-again-btn {
+    margin: 5px;
+    padding: 10px;
+    color: hsl(0, 0%, 86%);
+    background-color: hsl(0, 0%, 20%);
+    border: none;
+    border-radius: 5px;
+  }
+  .hidden {
+    display: none;
+  }
   .flexbox {
     justify-content: center;
     display: block; /* face elementele să fie unul sub altul */
@@ -142,9 +180,6 @@ body {
   .ttt {
     width: 250px; /* mai mică pe mobil */
     height: 250px;
-  }
-  .titlu {
-    margin-left: 0;
   }
   #mesaj {
     font-size: 20px; /* text mai mic pe mobil */

@@ -1,7 +1,12 @@
 const difSelect = document.getElementById("dificulty");
 const startBtn = document.getElementById("startBtn");
 const mesaj = document.getElementById("mesaj");
+const intro = document.querySelector(".intro");
+const tabel = document.querySelector(".tabel");
 const cells = document.querySelectorAll("button[data-cell]");
+const play_again = document.getElementById("play-again-btn");
+const menu = document.getElementById("menu-btn");
+const endBtn = document.getElementById("end-btn");
 
 let gameStarted = false;
 let player = "X";
@@ -16,30 +21,36 @@ startBtn.addEventListener("click", () => {
   switch (difStr) {
     case "greu":
       dif = 100;
+      intro.classList.add("hidden");
+      tabel.classList.remove("hidden");
       break;
     case "mediu":
       dif = 10;
+      intro.classList.add("hidden");
+      tabel.classList.remove("hidden");
       break;
     case "usor":
       dif = 3;
+      intro.classList.add("hidden");
+      tabel.classList.remove("hidden");
       break;
     default:
       mesaj.style.color = "red";
       mesaj.textContent = "Alege o dificultate!";
       return;
   }
-
+  endBtn.classList.remove("visible");
   gameStarted = true;
   turn = 0;
   board.fill("");
-  cells.forEach(c => (c.textContent = ""));
+  cells.forEach((c) => (c.textContent = ""));
   mesaj.style.color = "white";
   mesaj.textContent = "Jocul a început!";
 });
 
 // 🔹 mutarea jucătorului
-cells.forEach(cell => {
-  cell.addEventListener("click", e => {
+cells.forEach((cell) => {
+  cell.addEventListener("click", (e) => {
     if (!gameStarted) return;
     const idx = e.target.dataset.cell;
     if (board[idx] !== "") return;
@@ -50,11 +61,13 @@ cells.forEach(cell => {
     if (checkWin(player)) {
       mesaj.style.color = "green";
       mesaj.textContent = "Ai câștigat! ";
+      gameOver();
       gameStarted = false;
       return;
     }
 
     if (isFull()) {
+      gameOver();
       mesaj.style.color = "white";
       mesaj.textContent = "Remiză!";
       gameStarted = false;
@@ -83,6 +96,7 @@ function aiMove() {
   if (checkWin(ai)) {
     mesaj.style.color = "red";
     mesaj.textContent = "AI a câștigat! ";
+    gameOver();
     gameStarted = false;
     return;
   }
@@ -90,6 +104,7 @@ function aiMove() {
   if (isFull()) {
     mesaj.style.color = "white";
     mesaj.textContent = "Remiză!";
+    gameOver();
     gameStarted = false;
   }
 }
@@ -98,7 +113,7 @@ function aiMove() {
 function randomMove() {
   const available = board
     .map((v, i) => (v === "" ? i : null))
-    .filter(v => v !== null);
+    .filter((v) => v !== null);
   return available[Math.floor(Math.random() * available.length)];
 }
 
@@ -149,6 +164,22 @@ function minimax(newBoard, depth, isMax) {
 }
 
 // 🔹 funcții auxiliare
+function gameOver() {
+  endBtn.classList.add("visible");
+  menu.addEventListener("click", () => {
+    intro.classList.remove("hidden");
+    tabel.classList.add("hidden");
+  });
+  play_again.addEventListener("click", () => {
+    endBtn.classList.remove("visible");
+    gameStarted = true;
+    turn = 0;
+    board.fill("");
+    cells.forEach((c) => (c.textContent = ""));
+    mesaj.style.color = "white";
+    mesaj.textContent = "Jocul a început!";
+  });
+}
 function checkWin(sym) {
   const w = [
     [0, 1, 2],
@@ -158,11 +189,13 @@ function checkWin(sym) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
-  return w.some(([a, b, c]) => board[a] === sym && board[b] === sym && board[c] === sym);
+  return w.some(
+    ([a, b, c]) => board[a] === sym && board[b] === sym && board[c] === sym
+  );
 }
 
 function isFull() {
-  return board.every(cell => cell !== "");
+  return board.every((cell) => cell !== "");
 }
