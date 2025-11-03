@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X si O</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="titlu">
+        <h1>X si O contra AI</h1>
+        <p>Facut de mine, Razvan</p>
+      </div>
+    </header>
+    <div class="flexbox">
+      <div class="intro">
+        <label for="dificulty">Alege o dificultate:</label>
+        <br /><br /><select id="dificulty">
+          <option value="greu">Greu</option>
+          <option value="mediu">Mediu</option>
+          <option value="usor">Usor</option>
+        </select>
+        <br /><button id="startBtn">Incepe</button>
+      </div>
+      <div class="tabel">
+        <!-- Tabelul jocului (3x3). Fiecare celulă conține un <button> pentru accesibilitate și ușurința manipulării cu JS -->
+        <table class="ttt" role="grid" aria-label="Joc X și 0">
+          <tr role="row">
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="0"
+                aria-label="Celulă 1"
+              ></button>
+            </td>
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="1"
+                aria-label="Celulă 2"
+              ></button>
+            </td>
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="2"
+                aria-label="Celulă 3"
+              ></button>
+            </td>
+          </tr>
+          <tr role="row">
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="3"
+                aria-label="Celulă 4"
+              ></button>
+            </td>
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="4"
+                aria-label="Celulă 5"
+              ></button>
+            </td>
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="5"
+                aria-label="Celulă 6"
+              ></button>
+            </td>
+          </tr>
+          <tr role="row">
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="6"
+                aria-label="Celulă 7"
+              ></button>
+            </td>
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="7"
+                aria-label="Celulă 8"
+              ></button>
+            </td>
+            <td role="gridcell">
+              <button
+                type="button"
+                data-cell="8"
+                aria-label="Celulă 9"
+              ></button>
+            </td>
+          </tr>
+        </table>
+        <span id="mesaj"></span>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
