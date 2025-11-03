@@ -118,3 +118,8 @@ body {
   color: red;
   min-height: 30px; /* păstrează spațiu chiar dacă mesajul e gol */
 }
+@media (max-width: 400px) {
+  .flexbox {
+    display: block;
+  }
+}
