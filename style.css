@@ -127,6 +127,10 @@ body {
   }
   #end-btn {
     display: none; /* ascuns implicit */
+  }
+
+  #end-btn.visible {
+    display: flex; /* apare când jocul s-a terminat */
     margin: 20px auto; /* centru orizontal */
     padding: 20px;
     border-radius: 8px;
@@ -142,12 +146,9 @@ body {
     gap: 10px; /* dacă ai mai multe butoane */
   }
 
-  #end-btn.visible {
-    display: flex; /* apare când jocul s-a terminat */
-  }
-
   #menu-btn,
   #play-again-btn {
+    cursor: pointer;
     margin: 5px;
     padding: 10px;
     color: hsl(0, 0%, 86%);

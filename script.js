@@ -167,11 +167,14 @@ function minimax(newBoard, depth, isMax) {
 function gameOver() {
   endBtn.classList.add("visible");
   menu.addEventListener("click", () => {
+    endBtn.classList.remove("visible");
     intro.classList.remove("hidden");
     tabel.classList.add("hidden");
   });
   play_again.addEventListener("click", () => {
     endBtn.classList.remove("visible");
+    tabel.classList.remove("hidden");
+    intro.classList.add("hidden");
     gameStarted = true;
     turn = 0;
     board.fill("");
